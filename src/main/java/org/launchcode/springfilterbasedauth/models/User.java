@@ -4,6 +4,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -23,6 +24,9 @@ public class User extends AbstractEntity {
     private String pwHash;
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
+    @ManyToMany
+    private List<Dog> dogs;
+
     public User() {}
 
     public User(String username, String password) {
@@ -41,5 +45,18 @@ public class User extends AbstractEntity {
     public boolean isMatchingPassword(String password) {
         return encoder.matches(password, pwHash);
     }
+
+    public List<Dog> getDogs() {
+        return dogs;
+    }
+
+    public void setDogs(List<Dog> dogs) {
+        this.dogs = dogs;
+    }
+
+    public void addDog(Dog dog) {
+        this.dogs.add(dog);
+    }
+
 
 }

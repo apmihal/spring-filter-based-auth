@@ -1,6 +1,7 @@
 package org.launchcode.springfilterbasedauth.controllers;
 
 import org.launchcode.springfilterbasedauth.models.User;
+import org.launchcode.springfilterbasedauth.models.dao.DogDao;
 import org.launchcode.springfilterbasedauth.models.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,6 +21,9 @@ public abstract class AbstractController {
     * Other DAOs can be autowired here and they'll be available
     * to all classes extending AbstractController
     * */
+
+    @Autowired
+    protected DogDao dogDao;
 
     public static final String userSessionKey = "user_id";
 

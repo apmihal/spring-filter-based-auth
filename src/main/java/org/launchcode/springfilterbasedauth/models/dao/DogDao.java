@@ -14,7 +14,9 @@ import java.util.List;
  */
 @Transactional
 @Repository
-public interface UserDao extends CrudRepository<User, Integer> {
+public interface DogDao extends CrudRepository<Dog, Integer> {
 
-    User findByUsername(String username);
+    User findByName(String username);
+    List<Dog> findByUsers(User user);
+
 }
